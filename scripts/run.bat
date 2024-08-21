@@ -7,7 +7,6 @@ if not exist %proj_dir% (
 )
 
 if not "%~2"=="" (
-    echo %2
     set "index=%2"
     if "%~2"=="y" (
         set index=0
@@ -24,12 +23,12 @@ for %%f in ("%proj_dir%*.exe") do (
 echo.
 set /p index="Enter the number of the file you want to execute: "
 
-set /a count=0
-
 :runfirst
-
+set /a count=0
 for %%f in ("%proj_dir%*.exe") do (
     if %count% equ %index% (
+        echo ^> %proj_dir%%%~nxf
+        echo.
         %proj_dir%%%~nxf
     )
     set /a count+=1
